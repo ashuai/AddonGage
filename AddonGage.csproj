@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Sovell.API</RootNamespace>
+    <AssemblyName>Sovell.Addon.Gage</AssemblyName>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="*.cmd" />
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="APIUtils">
+      <HintPath>..\..\core\bin\Debug\net6.0\Sovell.API.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Interface">
+      <HintPath>..\..\core\bin\Debug\net6.0\Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sovell.APICore">
+      <HintPath>..\..\core\bin\Debug\net6.0\Sovell.API.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if exist ok.cmd ok.cmd $(ConfigurationName)" />
+  </Target>
+
+</Project>
